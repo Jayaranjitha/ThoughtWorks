@@ -1,9 +1,9 @@
 $(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("MyTest.feature");
 formatter.feature({
   "line": 2,
-  "name": "Login Test for Docomo 20B-038 Release",
+  "name": "My site Login Test",
   "description": "",
-  "id": "login-test-for-docomo-20b-038-release",
+  "id": "my-site-login-test",
   "keyword": "Feature",
   "tags": [
     {
@@ -16,7 +16,7 @@ formatter.scenario({
   "line": 4,
   "name": "My Site Login Details",
   "description": "",
-  "id": "login-test-for-docomo-20b-038-release;my-site-login-details",
+  "id": "my-site-login-test;my-site-login-details",
   "type": "scenario",
   "keyword": "Scenario"
 });
@@ -25,11 +25,28 @@ formatter.step({
   "name": "user is already on Login Page",
   "keyword": "Given "
 });
+formatter.step({
+  "line": 6,
+  "name": "user enters user name and password",
+  "keyword": "Then "
+});
+formatter.step({
+  "line": 7,
+  "name": "user clicks on \"login\" button",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 8,
+  "name": "user verifies the Page Title",
+  "keyword": "And "
+});
 formatter.match({
   "location": "Steps.open_the_Firefox_and_launch_the_application()"
 });
 formatter.result({
-  "duration": 26574705900,
+  "duration": 40014929200,
   "status": "passed"
 });
+formatter.match({
+  "location": "Steps.user_enters_username_and_password()"
 });

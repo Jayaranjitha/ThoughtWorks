@@ -1,6 +1,5 @@
 package com.methods.java;
 
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,9 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
-
 import org.apache.commons.io.FileUtils;
-//import org.joda.time.DateTime;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,7 +24,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -64,7 +60,7 @@ public class WEB_Methods {
 		return driver;
 
 	}
-	public static WebDriver initialization(WebDriver driver, String browserName, String langvalue,String loginURL) throws IOException {
+	public static WebDriver initialization(WebDriver driver, String browserName, String langvalue,String loginURL) throws IOException{
 
 		CountryLang = langvalue;
 		if (browserName.equalsIgnoreCase("Chrome")) {
@@ -96,7 +92,6 @@ public class WEB_Methods {
 
 		Properties prop = new Properties();
        logger.info("fileInput" +fileInput);
-		// load Properties file
 		try {
 			prop.load(fileInput);
 		} catch (IOException e) {
@@ -192,7 +187,7 @@ public class WEB_Methods {
 
 			} catch (NoSuchElementException e) {
 				logger.info("Unable to find element with " + attribute);
-				Report_getscreenShot("Unable to find element with " + attribute);
+				reportGetScreenShot("Unable to find element with " + attribute);
 			}
 		} else {
 			logger.info("WEB_findElement Locator: '" + attribute + "' is not found in properties file");
@@ -230,7 +225,7 @@ public class WEB_Methods {
 		wait = new WebDriverWait(driver, 150);
 		element = wait.until(ExpectedConditions.elementToBeClickable(element));
 		if (element != null) {
-			WebDriver driver = getDriver();
+			WebDriver driver= getDriver();
 			try {
 				element.click();
 
@@ -239,13 +234,12 @@ public class WEB_Methods {
 				e.printStackTrace();
 			}
 		} else {
-			logger.info("WEB_click-Unable to find the element");
+			logger.info("WEB_Click-Unable to find the element");
 		}
 	}
 
 	public static void scroll_down(WebElement element) {
 		wait = new WebDriverWait(driver, 150);
-		// element=wait.until(ExpectedConditions.elementToBeClickable(element));
 		if (element != null) {
 			WebDriver driver = getDriver();
 			try {
@@ -325,7 +319,7 @@ public class WEB_Methods {
 				;
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+		  e.printStackTrace();
 		}
 		return false;
 	}
@@ -367,13 +361,13 @@ public class WEB_Methods {
 
 	}
 
-	public static void Report_getscreenShot(String val) throws IOException,InterruptedException {
+	public static void reportGetScreenShot(String val) throws IOException,InterruptedException {
 		try {
 			ScreenShotPath();
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 			File scr = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			File dest = new File(ShfPath + val + "_" + timeStamp + ".jpg");
-			System.out.println("Screenshot Path" +dest);
+			logger.info("Screenshot Path" +dest);
 			FileUtils.copyFile(scr, dest);
 			scrnsh++;
 		} catch (Exception e) {
@@ -382,7 +376,6 @@ public class WEB_Methods {
 
 	}
 	
-
 	public void takeScreenShot() throws IOException {
 		String timeStamp;
 		File scrfile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -396,10 +389,7 @@ public class WEB_Methods {
 
 
 	}
-
-
-
-	public void WEB_waitWithSleep(long ms) {
+	public void webWaitWithSleep(long ms) {
 		try {
 			Thread.sleep(ms);
 		} catch (InterruptedException e) {
@@ -408,7 +398,7 @@ public class WEB_Methods {
 	}
 
 
-	public static void Quit() throws Exception {
+	public static void quit() throws Exception{
 		driver.quit();
 	}
 

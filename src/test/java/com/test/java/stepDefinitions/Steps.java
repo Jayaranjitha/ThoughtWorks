@@ -1,37 +1,11 @@
 package com.test.java.stepDefinitions;		
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
-import com.deathbycaptcha.Captcha;
-import com.deathbycaptcha.SocketClient;
 import com.methods.java.WEB_Methods;
-
 import cucumber.api.java.en.Given;		
 import cucumber.api.java.en.Then;		
-import cucumber.api.java.en.When;		
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
-
-
 
 public class Steps extends WEB_Methods  {				
 
@@ -49,7 +23,7 @@ public class Steps extends WEB_Methods  {
     		  System.out.println("browsername" +WEB_getPropertyValue("browserName"));
     			driver.manage().deleteAllCookies();
     			driver.manage().window().maximize();
-    			Report_getscreenShot("Login_Page");
+    			reportGetScreenShot("Login_Page");
     			
     	}
     		catch (Exception e) {
@@ -117,7 +91,7 @@ public class Steps extends WEB_Methods  {
     
     @Then("^user validates the Cart Details Information$")
     public void cartDetailsInformation() throws Exception {
-    	Report_getscreenShot("Cart Details Page");
+    	reportGetScreenShot("Cart Details Page");
     	Assert.assertEquals("ProductName",(WEB_Methods.WEB_findElement("XPATH", "ProductName").getText()),"C");
     	Assert.assertEquals("ProductName",(WEB_Methods.WEB_findElement("XPATH", "ProductPrice").getText()),"100");
     }
@@ -125,7 +99,7 @@ public class Steps extends WEB_Methods  {
     
     @Then("^user enters the Payment Details Information$")
     public void paymentDetails() throws Exception {
-    	Report_getscreenShot("Payment Details Page");
+    	reportGetScreenShot("Payment Details Page");
     	WEB_SendKeys(WEB_Methods.WEB_findElement("ID", "Payment_NAMETAG"),WEB_getPropertyValue("Payment_NAME"));
     	WEB_SendKeys(WEB_Methods.WEB_findElement("ID", "Payment_MOBILETAG"),WEB_getPropertyValue("Payment_MOBILE"));
     	WEB_SendKeys(WEB_Methods.WEB_findElement("ID", "Payment_AddressTAG"),WEB_getPropertyValue("Payment_Address"));

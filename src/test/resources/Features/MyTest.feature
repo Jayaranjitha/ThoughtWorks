@@ -1,5 +1,5 @@
 @ThoughtWorksChk
-Feature: Login Test for Docomo 20B-038 Release
+Feature: My site Login Test
 
 Scenario: My Site Login Details 
 	Given user is already on Login Page 
