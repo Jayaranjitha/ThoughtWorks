@@ -10,14 +10,11 @@
 
 	<name>WebAppTest</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
-     
-     
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -114,6 +111,8 @@
     <artifactId>json-simple</artifactId>
     <version>1.1.1</version>
 </dependency>
+
+
    
 	</dependencies>
 </project>
