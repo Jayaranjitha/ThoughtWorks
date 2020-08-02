@@ -1,4 +1,4 @@
-@ThoughtWorksChk
+@ThoughtWork
 Feature: My site Login Test
 
 Scenario: My Site Login Details 

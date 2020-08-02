@@ -38,7 +38,7 @@
          </configuration>
      </plugin> 
      
-     
+    
      <plugin>
   <groupId>net.masterthought</groupId>
 <artifactId>maven-cucumber-reporting</artifactId>
@@ -52,8 +52,15 @@
  </goals>
 <configuration>
 <!--   <projectName>imademethink_cucumber_advanced_reporting</projectName>  -->
- <outputDirectory>${project.build.directory}/target</outputDirectory>
- <cucumberOutput>${project.build.directory}/cucumber/cucumber.json</cucumberOutput>
+ <outputDirectory>${project.build.directory}</outputDirectory>
+ <cucumberOutput>${project.build.directory}</cucumberOutput>
+ <inputDirectory>${project.build.directory}</inputDirectory>
+     <jsonFiles>
+          <param>**/*.json</param>
+     </jsonFiles>
+<!--   <jsonFiles>  supports wildcard or name pattern -->
+<!--         <param>**/*.json</param> -->
+<!--       </jsonFiles> -->
  <skippedFails>true</skippedFails>
  <enableFlashCharts>false</enableFlashCharts>
 <!--  <buildNumber>885</buildNumber> --> 
