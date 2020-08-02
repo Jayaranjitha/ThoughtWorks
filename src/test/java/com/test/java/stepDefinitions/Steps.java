@@ -1,11 +1,14 @@
 package com.test.java.stepDefinitions;		
 
-import com.methods.java.WEB_Methods;
-import cucumber.api.java.en.Given;		
-import cucumber.api.java.en.Then;		
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
+
+import com.methods.java.WEB_Methods;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+
 
 public class Steps extends WEB_Methods  {				
 

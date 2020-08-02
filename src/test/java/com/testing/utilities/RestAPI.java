@@ -97,16 +97,16 @@ public class RestAPI {
 	        }
 	                
 			
-		public static void main(String[] args) throws Throwable {
-				
-			 RestAPI r = new RestAPI();
-			 String id = r.postAPI();
-	
-	         System.out.println(id);
-	
-	
-		
-		}
+//		public static void main(String[] args) throws Throwable {
+//				
+//			 RestAPI r = new RestAPI();
+//			 String id = r.postAPI();
+//	
+//	         System.out.println(id);
+//	
+//	
+//		
+//		}
 	
 
 }
