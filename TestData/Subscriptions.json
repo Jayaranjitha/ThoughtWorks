@@ -1,0 +1,8 @@
+{
+	"deletionPolicy": 0,
+	"events": [
+		"registration"
+	],
+	"groupName": "DeviceGrpFirst",
+	"subscriptionType": "lifecycleEvents"
+}

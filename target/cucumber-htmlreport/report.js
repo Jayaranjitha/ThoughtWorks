@@ -43,10 +43,3 @@ formatter.step({
 formatter.match({
   "location": "Steps.open_the_Firefox_and_launch_the_application()"
 });
-formatter.result({
-  "duration": 40014929200,
-  "status": "passed"
-});
-formatter.match({
-  "location": "Steps.user_enters_username_and_password()"
-});

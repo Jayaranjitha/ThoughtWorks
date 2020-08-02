@@ -1,19 +1,25 @@
 package com.methods.java;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -412,4 +418,54 @@ public class WEB_Methods {
 		}
 	}
 
+	
+
+	public List<String> readcsvFile(String csvFile) {
+
+        String delimiter=",";
+		List<String> csvdata = new ArrayList<String> ();
+		try {
+
+			BufferedReader br = new BufferedReader(new FileReader(new File(csvFile)));
+			String line = "" ;       
+			String[] tempArr = new String[10000];
+
+
+			while((line = br.readLine()) != null) {
+				tempArr = line.split(delimiter);            
+				for(String tempStr : tempArr) {       
+					csvdata.add(tempStr);
+				}
+
+			}
+			br.close();       
+
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+
+		return csvdata;
+	}
+	
+	public String jsonData(String jsonFileName) throws Exception {
+		
+		String json ="";
+		try {
+			
+			String fPath = System.getProperty("user.dir") + "\\TestData\\" +jsonFileName;
+	        JSONParser parser = new JSONParser();
+	        //Use JSONObject for simple JSON and JSONArray for array of JSON.
+	        JSONObject data = (JSONObject) parser.parse(
+	              new FileReader(fPath));//path to the JSON file.
+
+	         json = data.toJSONString();
+	        
+	        System.out.println("Json" +json);
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		
+		return json;
+	}
 }
