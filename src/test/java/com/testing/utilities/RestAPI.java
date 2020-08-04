@@ -1,7 +1,7 @@
 package com.testing.utilities;
 
 
-
+import static org.hamcrest.Matchers.*;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
@@ -40,28 +40,27 @@ public class RestAPI {
 			    
 		public void getAPI() throws Exception {
 						
-			String url = "https://iotimpactstg.starhub.com/m2m/subscriptions?type=lifeCycleEvents";
+			String url = "/m2m/subscriptions";
 			
 			Response resp1 = GenericRestMethods.get(url);
-	
+	        
+			String testy= "";
+			String test4y= "";
+			
 			System.out.println("StatusCode" + resp1.getStatusCode());
 			
 			System.out.println("Response Body" + resp1.getBody().asString());
 			JSONObject jsonobj1= new JSONObject(resp1.asString());
-			JSONArray jsonarray = jsonobj1.getJSONArray("validSignals");
-		    JSONObject test = jsonarray.getJSONObject(3);
-			signal = test.getString("name");
-			System.out.println(signal);
-			
-			
-			
-			JSONObject jsonobj2= new JSONObject(resp1.asString()).getJSONObject("info");
-			stepid = jsonobj2.getString("stepID");
-			System.out.println(stepid);
-			
-			
-			
-			
+			JSONArray jsonarray = jsonobj1.getJSONArray("subscriptions");
+			System.out.println("hi" +jsonarray.toString());
+		    JSONObject test = jsonarray.getJSONObject(0);
+			signal = test.getString("subscriptionId");
+			System.out.println("s" +signal);
+
+			System.out.println("grnme" + test.getString("groupName"));
+			testy = test.getJSONArray("events").toString();
+			System.out.println(signal + testy);
+		
 			}
 		
 	    
@@ -97,16 +96,13 @@ public class RestAPI {
 	        }
 	                
 			
-//		public static void main(String[] args) throws Throwable {
-//				
-//			 RestAPI r = new RestAPI();
-//			 String id = r.postAPI();
-//	
-//	         System.out.println(id);
-//	
-//	
-//		
-//		}
+		public static void main(String[] args) throws Throwable {
+				
+			 RestAPI r = new RestAPI();
+			  r.getAPI();
+	
+		
+		}
 	
 
 }

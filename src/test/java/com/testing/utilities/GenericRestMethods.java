@@ -1,28 +1,24 @@
 package com.testing.utilities;
 
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import static io.restassured.RestAssured.given;
 
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class GenericRestMethods {
 	
 		
    public  static Response post(String URL,String jsonBody) {
 			
-	        
-	   System.out.println("StatusCode1" + URL);
-	   
-			final Response resp = given().auth().basic("dradmin","87cbe99dbff6a962f333710b57cec9c8").contentType("application/json").body(jsonBody).when().post(URL)
+	  final Response resp = given().auth().preemptive().basic("dradmin","87cbe99dbff6a962f333710b57cec9c8").contentType("application/json").body(jsonBody).when().post(URL)
 					.then().statusCode(200)
 					.extract()
 					.response();
+					
 
-			System.out.println("StatusCode" + resp);
+			System.out.println("StatusCode" + resp.getBody());
 	       
 			System.out.println("StatusCode" + resp.getStatusCode());
 	       
@@ -31,10 +27,17 @@ public class GenericRestMethods {
 			
 		}
 		
-         public static Response get(String Geturl) {
+         public static Response get(String url) {
 			
-			final Response resp1 = given().auth().basic("user.qa1","userqa1!").contentType("application/json").when().get(Geturl)
-			.then().statusCode(200)
+        	   RestAssured.baseURI = "https://iotimpactstg.starhub.com";
+        	   RestAssured.authentication = preemptive().basic("dradmin","87cbe99dbff6a962f333710b57cec9c8");
+			  
+        	 
+        	 final Response resp1 = given().contentType("application/json").
+			when().queryParam("type", "lifeCycleEvents").queryParam("groupName", "TC4_1_4").get(url)
+			.then()
+		//	 .body("subscriptions.subscriptionId",equalTo("0b26bc20-1d71-4758-a9ad-75f9b221e404"))
+			 .statusCode(200)
 			.extract()
 			.response();
 			
@@ -50,6 +53,16 @@ public class GenericRestMethods {
         	 return putresp;
 
          }
+         
+//         public static void main(String[] args) throws Throwable {
+//				
+//     		 
+//     		Response resp1= GenericRestMethods.post("dfasd", "asdfsd");
+//     		
+//     		System.out.println("daf" +resp1.getBody());
+//     		
+//         }
+         
 
 	}
 
