@@ -1,0 +1,13 @@
+node {
+	stage ('SCM checkout'){
+		git "http://github.com/Jayaranjitha/"
+		}
+	stage ('Build'){
+    	dir("ThoughtWorks") {
+	   sh "mvn clean install"
+       }
+       	dir("ThoughtWorks/target") {
+	   sh "java -jar com.test-1.0-SNAPSHOT.jar"
+       }
+		}
+}
